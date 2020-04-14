@@ -1,0 +1,43 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    lvm_groups:
+      - vgname: libvirt-vg
+        disks:
+          - /dev/sdb1
+        create: true
+        lvnames:
+          - lvname: libvirtpool
+            size: 40%VG
+            opts: "--wipesignatures y"
+            create: true
+            metadata: libvirt-vg/libvirtpoolmeta
+            autoextendtreshold: 80
+            autoextendpercent: 20
+            mopts: defaults,pquota,gquota,quota
+          - lvname: libvirtpoolmeta
+            size: 10%VG
+            opts: "--wipesignatures y"
+            create: true
+    manage_lvm: true
+    users_group_list:
+      - name: libvirt
+    systemusers_user_list:
+      - name: libvirt
+        group: libvirt
+        groups: wheel
+    libvirt_host_pools:
+      - name: libvirt_vg
+        type: lvm2
+        source: libvirtpool
+        pvs:
+          - /dev/sdb1
+    libvirt_host_networks:
+      - name: ansible-virtualization-bridge
+        mode: bridge
+        bridge: ansible-virtualization-example
+  tasks:
+    - name: "Include ansible-virtualization"
+      include_role:
+        name: "ansible-virtualization"
