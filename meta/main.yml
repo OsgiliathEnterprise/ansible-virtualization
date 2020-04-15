@@ -52,7 +52,6 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - role: mrlesmithjr.manage-lvm
   - role: tcharl.ansible_volumes
   - { role: robertdebock.bootstrap, become: yes }
   - { role: robertdebock.core_dependencies, become: yes }

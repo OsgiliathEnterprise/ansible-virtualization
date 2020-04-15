@@ -17,7 +17,7 @@ roles:
     source: https://galaxy.ansible.com
     path: ../community
 
-  - name: mrlesmithjr.manage-lvm
+  - name: tcharl.ansible_manage_lvm
     source: https://galaxy.ansible.com
     path: ../community
 
