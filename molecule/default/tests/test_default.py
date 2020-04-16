@@ -1,10 +1,13 @@
 """Role testing files using testinfra."""
 
 
-def test_hosts_file(host):
-    """Validate /etc/hosts file."""
-    f = host.file("/etc/hosts")
+def test_vagrant_machine_is_fully_up(host):
+    command = """cat myvm.log | grep -c 'myvm: SSH auth method: private key'"""
+    cmd = host.run(command)
+    assert '1' in cmd.stdout
 
-    assert f.exists
-    assert f.user == "root"
-    assert f.group == "root"
+
+def test_vagrant_machine_is_running(host):
+    command = r"""vagrant status | egrep -c 'myvm\s*running\s\(libvirt\)'"""
+    cmd = host.run(command)
+    assert '1' in cmd.stdout

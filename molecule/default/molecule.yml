@@ -8,11 +8,16 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
+
 lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-Virtualization
     box: bento/fedora-31
     command: /sbin/init
+    memory: 8000
+    cpus: 4
+    provider_raw_config_args:
+      - "customize ['modifyvm', :id, '--nested-hw-virt', 'on']"
     provider_override_args:
       - "persistent_storage.enabled = true"
       - "persistent_storage.location = 'molecule-virtualization.vdi'"
