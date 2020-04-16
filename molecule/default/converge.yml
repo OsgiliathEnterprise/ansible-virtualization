@@ -2,25 +2,7 @@
 - name: Converge
   hosts: all
   vars:
-    lvm_groups:
-      - vgname: libvirt-vg
-        disks:
-          - /dev/sdb1
-        create: true
-        lvnames:
-          - lvname: libvirtpool
-            size: 40%VG
-            opts: "--wipesignatures y"
-            create: true
-            metadata: libvirt-vg/libvirtpoolmeta
-            autoextendtreshold: 80
-            autoextendpercent: 20
-            mopts: defaults,pquota,gquota,quota
-          - lvname: libvirtpoolmeta
-            size: 10%VG
-            opts: "--wipesignatures y"
-            create: true
-    manage_lvm: true
+    manage_lvm: false
     users_group_list:
       - name: libvirt
     systemusers_user_list:
@@ -36,8 +18,50 @@
     libvirt_host_networks:
       - name: ansible-virtualization-bridge
         mode: bridge
-        bridge: ansible-virtualization-example
+        bridge: bridge0
   tasks:
     - name: "Include ansible-virtualization"
       include_role:
         name: "ansible-virtualization"
+
+    - name: " Post converge - Install vagrant"
+      package:
+        name:
+         - qemu
+         - libvirt
+         - ruby-devel
+         - gcc
+         - qemu-kvm
+         - libxml2-devel
+         - libxslt-devel
+         - libguestfs-tools-c
+         - vagrant
+         - daemonize
+        state: present
+      become: true
+
+    - name: Start libvirtd
+      service:
+        name: libvirtd
+        state: started
+      become: true
+
+    - name: Copy vagrant file
+      copy:
+        src: Vagrantfile
+        dest: /home/vagrant/Vagrantfile
+        owner: vagrant
+        group: vagrant
+        mode: '0644'
+
+    - name: Execute Vagrant as daemon
+      command:
+        cmd: "daemonize -e /home/vagrant/myvmerr.log -o /home/vagrant/myvm.log -c /home/vagrant /usr/bin/vagrant up --provider=libvirt"
+        chdir: /home/vagrant
+        creates: /home/vagrant/myvm.log
+
+    - name: Wait until the string "auth" is in the vagrant log
+      wait_for:
+        path: /home/vagrant/myvm.log
+        search_regex: auth
+        timeout: 1000
