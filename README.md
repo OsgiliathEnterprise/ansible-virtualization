@@ -7,7 +7,7 @@ It's a simple wrapper over the community-provided [libvirt role](https://github.
 Requirements
 ------------
 
-executing `.configure` will start the role
+executing `.configure` will download requirements for the role
 
 Role Variables
 --------------

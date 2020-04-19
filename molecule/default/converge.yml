@@ -24,7 +24,7 @@
       include_role:
         name: "ansible-virtualization"
 
-    - name: " Post converge - Install vagrant"
+    - name: "Post converge - Install vagrant"
       package:
         name:
          - qemu
