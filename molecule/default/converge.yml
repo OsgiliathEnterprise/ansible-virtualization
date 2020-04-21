@@ -2,7 +2,16 @@
 - name: Converge
   hosts: all
   vars:
-    manage_lvm: false
+    manage_lvm: true
+    lvm_groups:
+      - vgname: non-persistent
+        disks:
+          - /dev/sdb1
+        create: true
+        lvnames:
+          - lvname: libvirtpool
+            size: 100%VG
+            create: true
     users_group_list:
       - name: libvirt
     systemusers_user_list:
