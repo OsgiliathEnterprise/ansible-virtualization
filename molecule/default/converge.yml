@@ -2,7 +2,13 @@
 - name: Converge
   hosts: all
   vars:
-    manage_lvm: false
+    manage_lvm: true
+    lvm_groups:
+      - vgname: libvirtpool
+        disks:
+          - /dev/sdb1
+        create: true
+        lvnames: []
     users_group_list:
       - name: libvirt
     systemusers_user_list:
@@ -13,8 +19,6 @@
       - name: libvirt_vg
         type: lvm2
         source: libvirtpool
-        pvs:
-          - /dev/sdb1
     libvirt_host_networks:
       - name: ansible-virtualization-bridge
         mode: bridge

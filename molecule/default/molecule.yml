@@ -3,7 +3,7 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-    roles-path: ../community
+    roles-path: ../../../community
 driver:
   name: vagrant
   provider:
@@ -12,8 +12,7 @@ driver:
 lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-Virtualization
-    box: bento/fedora-31
-    command: /sbin/init
+    box: fedora/31-cloud-base
     memory: 8000
     cpus: 4
     provider_raw_config_args:

@@ -1,6 +1,13 @@
 Virtualization
 =========
 
+
+* Galaxy: [![Ansible Galaxy](https://img.shields.io/badge/galaxy-tcharl.ansible_virtualization-660198.svg?style=flat)](https://galaxy.ansible.com/tcharl/ansible_virtualization)
+* Lint & requirements: ![Molecule](https://github.com/OsgiliathEnterprise/ansible-virtualization/workflows/Molecule/badge.svg)
+* Tests: [![Build Status](https://travis-ci.org/OsgiliathEnterprise/ansible-virtualization.svg?branch=master)](https://travis-ci.org/OsgiliathEnterprise/ansible-virtualization)
+* Chat: [![Join the chat at https://gitter.im/OsgiliathEnterprise/platform](https://badges.gitter.im/OsgiliathEnterprise/platform.svg)](https://gitter.im/OsgiliathEnterprise/platform?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
 Configure virtualization on the host.
 It's a simple wrapper over the community-provided [libvirt role](https://github.com/stackhpc/ansible-role-libvirt-host)
 
