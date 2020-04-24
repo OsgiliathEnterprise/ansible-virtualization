@@ -3,7 +3,7 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-    roles-path: ../community
+    roles-path: ../../../community
 driver:
   name: vagrant
   provider:
@@ -37,3 +37,19 @@ verifier:
     PYTHONWARNINGS: "ignore:.*U.*mode is deprecated:DeprecationWarning"
   options:
     v: 1
+scenario:
+  name: kvm
+  test_sequence:
+    - lint
+    - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+ #   - idempotence
+    - side_effect
+    - verify
+    - cleanup
+    - destroy
