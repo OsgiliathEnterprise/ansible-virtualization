@@ -68,4 +68,4 @@
       wait_for:
         path: /home/vagrant/myvm.log
         search_regex: auth
-        timeout: 1000
+        timeout: 1800
