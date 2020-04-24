@@ -12,20 +12,12 @@ lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-virtualization
     box: fedora/31-cloud-base
-    groups:
-      - lvm
-    provider_override_args:
-      - "persistent_storage.enabled = true"
-      - "persistent_storage.location = 'molecule-containerization.vdi'"
-      - "persistent_storage.size = 100"
-      - "persistent_storage.mount = false"
-      - "persistent_storage.diskdevice = '/dev/sdb'"
+    cpus: 2
+    memory: 2048
+    provider_raw_config_args:
+      - "storage :file, :size => '1G', :device => 'vdb'"
 provisioner:
   name: ansible
-  inventory:
-    host_vars:
-      localhost:
-        ansible_python_interpreter: /usr/bin/python3
   config_options:
     defaults:
       forks: 20
@@ -33,7 +25,7 @@ provisioner:
       pipelining: true
       ssh_args: -o ControlMaster=auto -o ControlPersist=600s
   env:
-    ANSIBLE_ROLES_PATH: ../../..:../../../community:../../../community/ansible_collections/crivetimihai/roles
+    ANSIBLE_ROLES_PATH: ../../..:../../../community
 verifier:
   name: testinfra
   env:
