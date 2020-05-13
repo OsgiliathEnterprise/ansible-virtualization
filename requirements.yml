@@ -4,10 +4,6 @@ roles:
     source: https://galaxy.ansible.com
     path: ../community
 
-  - name: tcharl.ansible_volumes
-    source: https://galaxy.ansible.com
-    path: ../community
-
   - name: tcharl.ansible_users
     source: https://galaxy.ansible.com
     path: ../community

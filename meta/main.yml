@@ -52,6 +52,6 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies:
-  - role: tcharl.ansible_volumes
+  - role: tcharl.ansible_manage_lvm
   - role: tcharl.ansible_users
   - role: tcharl.ansible_role_libvirt_host
