@@ -5,8 +5,11 @@ dist: bionic
 language: python
 addons:
   apt:
-    update: true
     sources:
+      - sourceline: 'deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main'
+        key_url: 'https://apt.releases.hashicorp.com/gpg'
+    update: true
+    packages:
       - bridge-utils
       - dnsmasq-base
       - ebtables
@@ -23,15 +26,16 @@ addons:
       - iproute2
       - sudo
       - libvirt0
+      - vagrant
 python:
   - "3.8"
 env:
   - VAGRANT_VER: 2.2.14
 
 install:
-  - wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
-  - sudo apt -y install ./vagrant_"$VAGRANT_VER"_x86_64.deb
-  - sudo vagrant plugin install vagrant-libvirt
+#  - wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
+#  - sudo apt -y install ./vagrant_"$VAGRANT_VER"_x86_64.deb
+  - vagrant plugin install vagrant-libvirt
   - |
     pip install wheel
     pip install netaddr python-vagrant yamllint testinfra flake8
