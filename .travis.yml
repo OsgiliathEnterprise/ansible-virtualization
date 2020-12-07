@@ -27,14 +27,12 @@ python:
   - "3.8"
   - "pypy3"
 env:
-  global:
-    - VAGRANT_VER: 2.2.14
+  - VAGRANT_VER: 2.2.14
 
 install:
-  - |
-    wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
-    sudo apt -y install ./vagrant_"$VAGRANT_VER"_x86_64.deb
-    vagrant plugin install vagrant-libvirt
+  - wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
+  - sudo apt -y install ./vagrant_"$VAGRANT_VER"_x86_64.deb
+  - vagrant plugin install vagrant-libvirt
   - |
     pip install wheel
     pip install netaddr python-vagrant yamllint testinfra flake8

@@ -9,7 +9,7 @@ driver:
   provider:
     name: libvirt
     options:
-      driver: qemu
+      driver: kvm
 lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-virtualization
