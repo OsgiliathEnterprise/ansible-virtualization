@@ -8,16 +8,18 @@ driver:
   name: vagrant
   provider:
     name: libvirt
-    options:
-      driver: kvm
+
 lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-virtualization
     box: fedora/31-cloud-base
-    cpus: 2
-    memory: 2048
+    provider_options:
+      driver: '"kvm"'
+      cpus: 2
+      memory: 2048
     provider_raw_config_args:
       - "storage :file, :size => '1G', :device => 'vdb'"
+
 provisioner:
   name: ansible
   config_options:
