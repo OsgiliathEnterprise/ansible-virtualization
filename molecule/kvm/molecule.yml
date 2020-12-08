@@ -16,7 +16,7 @@ platforms:
     provider_options:
       driver: '"kvm"'
       cpus: 2
-      memory: 1024
+      memory: 2048
     provider_raw_config_args:
       - "storage :file, :size => '1G', :device => 'vdb'"
 
