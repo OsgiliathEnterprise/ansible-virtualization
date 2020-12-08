@@ -26,8 +26,6 @@ addons:
       - vagrant
 python:
   - "3.8"
-#env:
-#  - VAGRANT_VER: 2.2.14
 
 install:
 #  - wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
