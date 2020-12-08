@@ -18,13 +18,11 @@ addons:
       - qemu-kvm
       - qemu-utils
       - ruby-dev
-      - purge
       - ca-certificates
       - curl
       - gcc
       - iproute2
       - sudo
-      - libvirt0
       - vagrant
 python:
   - "3.8"
