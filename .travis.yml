@@ -33,11 +33,10 @@ install:
 #  - wget https://releases.hashicorp.com/vagrant/$VAGRANT_VER/vagrant_"$VAGRANT_VER"_x86_64.deb
 #  - sudo apt -y install ./vagrant_"$VAGRANT_VER"_x86_64.deb
   - vagrant plugin install vagrant-libvirt
-  - |
-    pip install wheel pyopenssl
-    pip install netaddr python-vagrant yamllint testinfra flake8
-    pip install ansible ansible-lint
-    pip install molecule molecule-vagrant python-vagrant
+  - pip install wheel pyopenssl
+  - pip install netaddr python-vagrant yamllint testinfra flake8
+  - pip install ansible ansible-lint
+  - pip install molecule molecule-vagrant python-vagrant
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script: travis_wait 30 sudo molecule test --scenario-name kvm
