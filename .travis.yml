@@ -38,3 +38,5 @@ install:
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script: travis_wait 30 molecule test --scenario-name kvm
+after_failure:
+  - cat /home/travis/.cache/molecule/ansible-virtualization/kvm/vagrant-Fedora-Molecule-virtualization.err

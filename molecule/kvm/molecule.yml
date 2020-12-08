@@ -13,6 +13,7 @@ lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-virtualization
     box: fedora/31-cloud-base
+    box_url: https://download.fedoraproject.org/pub/fedora/linux/releases/31/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-31-1.9.x86_64.vagrant-libvirt.box
     provider_options:
       driver: '"kvm"'
       cpus: 2
