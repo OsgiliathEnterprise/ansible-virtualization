@@ -67,5 +67,5 @@
     - name: Wait until the string "Time for SSH ready" is in the vagrant log
       wait_for:
         path: /home/vagrant/myvmerr.log
-        search_regex: "SSH\sready"
+        search_regex: SSH\sis\sready
         timeout: 1000
