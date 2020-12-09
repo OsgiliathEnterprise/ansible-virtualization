@@ -2,7 +2,7 @@
 
 
 def test_vagrant_machine_is_fully_up(host):
-    command = """cat /home/vagrant/myvmerr.log | egrep -c 'SSH\sis\sready'"""
+    command = r"""cat /home/vagrant/myvmerr.log | egrep -c 'SSH\sis\sready'"""
     cmd = host.run(command)
     assert '1' in cmd.stdout
 
