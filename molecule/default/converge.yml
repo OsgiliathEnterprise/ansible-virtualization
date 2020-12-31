@@ -60,12 +60,12 @@
 
     - name: Execute Vagrant as daemon
       command:
-        cmd: "daemonize -e /home/vagrant/myvmerr.log -o /home/vagrant/myvm.log -c /home/vagrant /usr/bin/vagrant up --provider=libvirt"
+        cmd: "daemonize -e /home/vagrant/myvmerr.log -o /home/vagrant/myvm.log -c /home/vagrant -E VAGRANT_LOG=info /usr/bin/vagrant up --provider=libvirt"
         chdir: /home/vagrant
         creates: /home/vagrant/myvm.log
 
-    - name: Wait until the string "auth" is in the vagrant log
+    - name: Wait until the string "Time for SSH ready" is in the vagrant log
       wait_for:
-        path: /home/vagrant/myvm.log
-        search_regex: auth
+        path: /home/vagrant/myvmerr.log
+        search_regex: SSH\sis\sready
         timeout: 1000
