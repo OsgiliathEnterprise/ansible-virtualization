@@ -8,4 +8,5 @@
   when:
     - ansible_facts['distribution'] == "Fedora"
     - ansible_facts['distribution_major_version'] | int < 32
+  become: yes
   # see https://bugzilla.redhat.com/show_bug.cgi?id=1697636
