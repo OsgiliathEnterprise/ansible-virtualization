@@ -1,5 +1,6 @@
 galaxy_info:
-  author: cmordant1@gmail.com
+  role_name: ansible_virtualization
+  author: OsgiliathEnterprise
   description: Setup libvirt, kvm and qemu configuration
   company: Osgiliath Inc.
 

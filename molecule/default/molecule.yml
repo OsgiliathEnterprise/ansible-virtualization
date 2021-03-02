@@ -13,10 +13,15 @@ lint: yamllint . && flake8 && ansible-lint --exclude=meta
 platforms:
   - name: Fedora-Molecule-Virtualization
     box: fedora/33-cloud-base
-    cpus: 2
-    memory: 2048
+    provider_options:
+      cpus: 4
+      memory: 8092
+    instance_raw_config_args:
+      - "cache.enable :dnf"
+      - "cache.auto_detect = false"
     provider_raw_config_args:
       - "customize ['modifyvm', :id, '--nested-hw-virt', 'on']"
+      - "customize ['storagectl', :id, '--name', 'IDE', '--hostiocache', 'on']"
     provider_override_args:
       - "persistent_storage.enabled = true"
       - "persistent_storage.location = 'molecule-virtualization.vdi'"
