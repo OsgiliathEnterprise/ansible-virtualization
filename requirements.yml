@@ -23,3 +23,16 @@ roles:
   - name: tcharl.ansible_role_libvirt_host
     source: https://galaxy.ansible.com
     path: ../community
+
+  - name: tcharl.ansible_securehost
+    source: https://galaxy.ansible.com
+    path: ../community
+
+  - name: robertdebock.fail2ban
+    source: https://galaxy.ansible.com
+    path: ../community
+
+  - name: robertdebock.epel
+    source: https://galaxy.ansible.com
+    path: ../community
+
