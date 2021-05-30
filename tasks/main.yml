@@ -1,5 +1,17 @@
 ---
 # tasks file for ansible-virtualization
+- name: ansible-virtualization | import lvm playbook
+  import_role:
+    name: tcharl.ansible_manage_lvm
+  become: true
+  when: standalone_role
+
+- name: ansible-virtualization | import user playbook
+  import_role:
+    name: tcharl.ansible_users
+  become: true
+  when: standalone_role
+
 
 - name: ansible-virtualization | permanently allow traffic forwarding on host nic
   ansible.posix.sysctl:
