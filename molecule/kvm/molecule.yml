@@ -8,8 +8,11 @@ driver:
   name: vagrant
   provider:
     name: libvirt
-
-lint: yamllint . && flake8 && ansible-lint --exclude=meta,.cache
+lint: |
+  set -e
+  yamllint .
+  flake8
+  ANSIBLE_ROLES_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community ANSIBLE_COLLECTIONS_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community-collections ansible-lint
 platforms:
   - name: Fedora-Molecule-virtualization
     box: fedora/33-cloud-base
@@ -19,7 +22,6 @@ platforms:
       memory: 2048
     provider_raw_config_args:
       - "storage :file, :size => '1G', :device => 'vdb'"
-
 provisioner:
   name: ansible
   config_options:
@@ -29,7 +31,7 @@ provisioner:
       pipelining: true
       ssh_args: -o ControlMaster=auto -o ControlPersist=600s
   env:
-    ANSIBLE_ROLES_PATH: ../../..:../../../community
+    ANSIBLE_ROLES_PATH: ${ANSIBLE_ROLES_PATH}:../../../community
 verifier:
   name: testinfra
   env:

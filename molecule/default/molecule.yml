@@ -8,17 +8,17 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
-
-lint: yamllint . && flake8 && ansible-lint --exclude=meta,.cache
+lint: |
+  set -e
+  yamllint .
+  flake8
+  ANSIBLE_ROLES_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community ANSIBLE_COLLECTIONS_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community-collections ansible-lint
 platforms:
   - name: Fedora-Molecule-Virtualization
     box: fedora/33-cloud-base
     provider_options:
       cpus: 4
       memory: 8092
-    instance_raw_config_args:
-      - "cache.enable :dnf"
-      - "cache.auto_detect = false"
     provider_raw_config_args:
       - "customize ['modifyvm', :id, '--nested-hw-virt', 'on']"
       - "customize ['storagectl', :id, '--name', 'IDE', '--hostiocache', 'on']"
@@ -31,7 +31,7 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_ROLES_PATH: ../../..:../../../community
+    ANSIBLE_ROLES_PATH: ${ANSIBLE_ROLES_PATH}:../../../community
 verifier:
   name: testinfra
   env:
