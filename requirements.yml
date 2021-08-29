@@ -1,6 +1,6 @@
 ---
 roles:
-  - name: tcharl.ansible_manage_lvm
+  - name: mrlesmithjr.manage-lvm
     source: https://galaxy.ansible.com
 
   - name: tcharl.ansible_users
