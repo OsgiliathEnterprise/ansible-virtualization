@@ -1,0 +1,11 @@
+---
+
+- name: ansible-virtualization | import lvm playbook
+  import_role:
+    name: mrlesmithjr.manage-lvm
+  become: true
+
+- name: ansible-virtualization | import user playbook
+  import_role:
+    name: tcharl.ansible_users
+  become: true

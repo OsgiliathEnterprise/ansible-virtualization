@@ -3,7 +3,7 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-    roles-path: ../community
+    roles-path: ${MOLECULE_PROJECT_DIRECTORY}/../community
 driver:
   name: vagrant
   provider:
@@ -15,7 +15,7 @@ lint: |
   ANSIBLE_ROLES_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community ANSIBLE_COLLECTIONS_PATH=${MOLECULE_PROJECT_DIRECTORY}/../community-collections ansible-lint
 platforms:
   - name: Fedora-Molecule-Virtualization
-    box: fedora/33-cloud-base
+    box: fedora/34-cloud-base
     provider_options:
       cpus: 4
       memory: 8092
@@ -31,7 +31,7 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_ROLES_PATH: ${ANSIBLE_ROLES_PATH}:../../../community
+    ANSIBLE_ROLES_PATH: ${ANSIBLE_ROLES_PATH}:${MOLECULE_PROJECT_DIRECTORY}/../community:${MOLECULE_PROJECT_DIRECTORY}/..
 verifier:
   name: testinfra
   env:

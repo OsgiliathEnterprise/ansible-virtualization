@@ -26,7 +26,7 @@
   tasks:
     - name: "Include ansible-virtualization"
       include_role:
-        name: "ansible-virtualization"
+        name: tcharl.ansible_virtualization
 
     - name: "Post converge - Install vagrant"
       package:

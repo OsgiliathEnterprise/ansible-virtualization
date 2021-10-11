@@ -4,6 +4,7 @@ galaxy_info:
   author: OsgiliathEnterprise
   description: Setup libvirt, kvm and qemu configuration
   company: Osgiliath Inc.
+  namespace: tcharl
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

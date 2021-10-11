@@ -1,17 +1,12 @@
 ---
 # tasks file for ansible-virtualization
-- name: ansible-virtualization | import lvm playbook
-  import_role:
-    name: mrlesmithjr.manage-lvm
-  become: true
-  when: standalone_role
-
-- name: ansible-virtualization | import user playbook
-  import_role:
-    name: tcharl.ansible_users
-  become: true
-  when: standalone_role
-
+- name: ansible-securehost | dependences
+  ansible.builtin.include_tasks: requirements.yml
+  when:
+   - standalone_role is defined
+   - standalone_role
+  tags:
+    - standalone
 
 - name: ansible-virtualization | permanently allow traffic forwarding on host nic
   ansible.posix.sysctl:
