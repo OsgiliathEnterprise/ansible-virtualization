@@ -1,6 +1,13 @@
 ---
 # tasks file for ansible-virtualization
-- name: ansible-securehost | dependences
+- name: ansible-virtualization | disable dnsmaq
+  ansible.builtin.service:
+    name: dnsmasq
+    state: stopped
+    enable: no
+  become: yes
+
+- name: ansible-virtualization | dependences
   ansible.builtin.include_tasks: requirements.yml
   when:
    - standalone_role is defined

@@ -21,7 +21,7 @@ Role Variables
 
 Same as the one of the [original role](https://github.com/stackhpc/ansible-role-libvirt-host)
 
-IMPORTANT: you have to add `zone: public` to your `libvirt_host_networks` network entries to be compatible with this role. 
+IMPORTANT: you have to add `zone: libvirt` (it's the default) to your `libvirt_host_networks` network entries to be compatible with this role. 
 
 Dependencies
 ------------
