@@ -1,10 +1,10 @@
 ---
 # tasks file for ansible-virtualization
 - name: ansible-virtualization | disable dnsmaq
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: dnsmasq
     state: stopped
-    enable: no
+    enabled: no
   become: yes
 
 - name: ansible-virtualization | dependences
