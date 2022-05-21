@@ -39,9 +39,6 @@ install:
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script:
-  - cd ..
-  - mv ansible-virtualization tcharl.ansible_virtualization
-  - cd tcharl.ansible_virtualization
   - travis_wait 60 molecule test --scenario-name kvm
 branches:
   only:
