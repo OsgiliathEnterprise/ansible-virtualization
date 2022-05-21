@@ -27,7 +27,7 @@
     - role: tcharl.ansible_virtualization
   tasks:
     - name: "Post converge - Install vagrant"
-      package:
+      ansible.builtin.package:
         name:
          - qemu
          - libvirt
@@ -43,13 +43,13 @@
       become: true
 
     - name: Start libvirtd
-      service:
+      ansible.builtin.service:
         name: libvirtd
         state: started
       become: true
 
     - name: Copy vagrant file
-      copy:
+      ansible.builtin.copy:
         src: Vagrantfile
         dest: /home/vagrant/Vagrantfile
         owner: vagrant
@@ -57,7 +57,7 @@
         mode: '0644'
 
     - name: Execute Vagrant as daemon
-      command:
+      ansible.builtin.command:
         cmd: "daemonize -e /home/vagrant/myvmerr.log -o /home/vagrant/myvm.log -c /home/vagrant -E VAGRANT_LOG=info /usr/bin/vagrant up --provider=libvirt"
         chdir: /home/vagrant
         creates: /home/vagrant/myvm.log
@@ -65,7 +65,7 @@
     - name: Wait until the string "Time for SSH ready" is in the vagrant log
       block:
         - name: test the "auth" string  is in the vagrant log
-          wait_for:
+          ansible.builtin.wait_for:
             path: /home/vagrant/myvmerr.log
             search_regex: SSH\sis\sready
             timeout: 1000

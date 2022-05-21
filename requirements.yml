@@ -1,31 +1,21 @@
 ---
 roles:
   - name: mrlesmithjr.manage-lvm
-    source: https://galaxy.ansible.com
 
   - name: tcharl.ansible_users
-    source: https://galaxy.ansible.com
 
   - name: robertdebock.users
-    source: https://galaxy.ansible.com
 
   - name: robertdebock.bootstrap
-    source: https://galaxy.ansible.com
 
   - name: robertdebock.core_dependencies
-    source: https://galaxy.ansible.com
 
   - name: tcharl.ansible_role_libvirt_host
-    source: https://galaxy.ansible.com
 
   - name: tcharl.ansible_securehost
-    source: https://galaxy.ansible.com
 
   - name: robertdebock.fail2ban
-    source: https://galaxy.ansible.com
 
   - name: robertdebock.epel
-    source: https://galaxy.ansible.com
 
   - name: geerlingguy.ntp
-    source: https://galaxy.ansible.com
