@@ -66,8 +66,8 @@
       block:
         - name: test the "auth" string  is in the vagrant log
           ansible.builtin.wait_for:
-            path: /home/vagrant/myvmerr.log
-            search_regex: SSH\sis\sready
+            path: /home/vagrant/myvm.log
+            search_regex: Machine\sbooted\sand\sready
             timeout: 1000
       always:
         - name: cat error log

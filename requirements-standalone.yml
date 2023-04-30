@@ -1,21 +1,8 @@
 ---
 roles:
   - name: mrlesmithjr.manage-lvm
-
-  - name: tcharl.ansible_users
-
+  - name: tcharl.ansible_localuser
   - name: robertdebock.users
-
   - name: robertdebock.bootstrap
-
   - name: robertdebock.core_dependencies
-
   - name: tcharl.ansible_role_libvirt_host
-
-  - name: tcharl.ansible_securehost
-
-  - name: robertdebock.fail2ban
-
-  - name: robertdebock.epel
-
-  - name: geerlingguy.ntp
