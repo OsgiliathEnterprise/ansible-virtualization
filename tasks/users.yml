@@ -1,0 +1,29 @@
+---
+
+- name: Users | Create libvirt group
+  ansible.builtin.include_role:
+    name: tcharl.ansible_localuser
+  vars:
+    ansible_become: True
+    local_users_group_list:
+      - name: libvirt
+    systemusers_user_list:
+      - name: libvirt
+        group: libvirt
+        groups: wheel
+
+- name: Users | Get current user.
+  ansible.builtin.command: whoami
+  changed_when: false
+  become: false
+  register: whoami
+
+# not using ansible_user role here as we append the group
+- name: Users | Add libvirt group to current user
+  ansible.builtin.user:
+    name: "{{ item.stdout }}"
+    groups: libvirt
+    append: yes
+  become: true
+  with_items:
+    - "{{ whoami }}"

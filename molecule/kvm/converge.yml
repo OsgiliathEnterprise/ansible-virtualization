@@ -23,7 +23,7 @@
         mode: bridge
         bridge: bridge0
   roles:
-    - role: ansible-virtualization
+    - role: tcharl.ansible_virtualization
   tasks:
     - name: "Post converge - Install vagrant"
       ansible.builtin.package:
@@ -65,8 +65,8 @@
       block:
         - name: test the "auth" string  is in the vagrant log
           ansible.builtin.wait_for:
-            path: /home/vagrant/myvmerr.log
-            search_regex: SSH\sis\sready
+            path: /home/vagrant/myvm.log
+            search_regex: Machine\sbooted\sand\sready
             timeout: 1800
       always:
         - name: cat error log

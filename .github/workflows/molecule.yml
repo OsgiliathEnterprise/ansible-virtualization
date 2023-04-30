@@ -13,7 +13,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  requirements:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: install prereq
+        run: |
+          ansible-galaxy role install -r requirements-standalone.yml
+          ansible-galaxy collection install -r requirements-collections.yml
   lint:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -35,7 +45,7 @@ jobs:
 #      - name: apt upgrade
 #        run: |
 #          sudo apt upgrade
-      - name: install molecule apt prerequisite
+      - name: install libvirt apt prerequisite
         run: |
           sudo apt -y install bridge-utils dnsmasq-base ebtables libvirt-dev qemu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients qemu-utils ruby-dev ca-certificates curl gcc iproute2 sudo rustc vagrant python3 python3-pip python3-setuptools cpu-checker
       - name: start libvirtd
@@ -49,24 +59,10 @@ jobs:
           vagrant plugin install vagrant-libvirt
       - name: pip install packages
         run: |
-          pip3 install wheel setuptools-rust netaddr
-          pip3 install ansible-compat==0.5.0
-          pip3 install pyopenssl python-vagrant yamllint pytest-testinfra flake8 ansible ansible-lint molecule molecule-vagrant
-          pip3 install -U PyYAML
+          pip3 install wheel setuptools-rust tox
 #      - name: Test KVM conditions fails
 #        run: |
 #          sudo kvm-ok
       - name: molecule lint
         run: |
-          molecule lint
-
-  requirements:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: install prereq
-        run: |
-          ansible-galaxy role install -r requirements.yml
+          tox -e lint

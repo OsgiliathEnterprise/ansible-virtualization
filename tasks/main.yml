@@ -1,13 +1,13 @@
 ---
 # tasks file for ansible-virtualization
-- name: ansible-virtualization | disable dnsmaq
+- name: Disable dnsmaq
   ansible.builtin.systemd:
     name: dnsmasq
     state: stopped
     enabled: no
   become: yes
 
-- name: ansible-virtualization | dependences
+- name: Requirements
   ansible.builtin.include_tasks: requirements.yml
   when:
    - standalone_role is defined
@@ -15,7 +15,10 @@
   tags:
     - standalone
 
-- name: ansible-virtualization | permanently allow traffic forwarding on host nic
+- name: Configure users
+  ansible.builtin.include_tasks: users.yml
+
+- name: Permanently allow traffic forwarding on host nic
   ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: '1'
@@ -24,7 +27,7 @@
     reload: yes
   become: yes
 
-- name: ansible-virtualizatio | permanently allow traffic forwarding on host nic
+- name: Permanently allow traffic forwarding on host nic
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.forwarding
     value: '1'

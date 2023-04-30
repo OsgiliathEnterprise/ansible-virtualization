@@ -1,11 +1,6 @@
 ---
 
-- name: ansible-virtualization | import lvm playbook
+- name: Requirements | Import lvm playbook
   ansible.builtin.import_role:
     name: mrlesmithjr.manage-lvm
-  become: true
-
-- name: ansible-virtualization | import user playbook
-  ansible.builtin.import_role:
-    name: tcharl.ansible_users
   become: true

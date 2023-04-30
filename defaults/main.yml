@@ -1,2 +1,3 @@
 ---
 # defaults file for ansible-virtualization
+standalone_role: True
