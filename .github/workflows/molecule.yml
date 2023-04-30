@@ -47,7 +47,7 @@ jobs:
 #          sudo apt upgrade
       - name: install libvirt apt prerequisite
         run: |
-          sudo apt -y install bridge-utils dnsmasq-base ebtables libvirt-dev qemu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients qemu-utils ruby-dev ca-certificates curl gcc iproute2 sudo rustc vagrant python3 python3-pip python3-setuptools cpu-checker
+          sudo apt -y install bridge-utils dnsmasq-base ebtables libvirt-dev qemu-kvm libvirt-daemon-system libvirt-daemon libvirt-clients qemu-utils ruby-dev ca-certificates curl gcc iproute2 sudo rustc vagrant python3 python3-pip cpu-checker
       - name: start libvirtd
         run: |
           sudo systemctl restart libvirtd
@@ -59,10 +59,10 @@ jobs:
           vagrant plugin install vagrant-libvirt
       - name: pip install packages
         run: |
-          pip3 install wheel setuptools-rust tox
+          pip3 install wheel setuptools tox
 #      - name: Test KVM conditions fails
 #        run: |
 #          sudo kvm-ok
-      - name: molecule lint
+      - name: tox lint
         run: |
           tox -e lint
