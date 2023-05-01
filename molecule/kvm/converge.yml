@@ -55,18 +55,25 @@
         group: vagrant
         mode: '0644'
 
+    - name: stats files
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - "/home/vagrant/myvmerr.log"
+        - "/home/vagrant/myvm.log"
+
     - name: Execute Vagrant as daemon
       ansible.builtin.command:
         cmd: "daemonize -e /home/vagrant/myvmerr.log -o /home/vagrant/myvm.log -c /home/vagrant -E VAGRANT_LOG=info /usr/bin/vagrant up --provider=libvirt"
         chdir: /home/vagrant
         creates: /home/vagrant/myvm.log
 
-    - name: Wait until the string "auth" is in the vagrant log
+    - name: Wait until the string "Time for SSH ready" is in the vagrant log
       block:
-        - name: test the "auth" string  is in the vagrant log
+        - name: Wait until the string "auth" is in the vagrant log
           ansible.builtin.wait_for:
-            path: /home/vagrant/myvm.log
-            search_regex: Machine\sbooted\sand\sready
+            path: /home/vagrant/myvmerr.log
+            search_regex: SSH\sis\sready
             timeout: 1800
       always:
         - name: cat error log

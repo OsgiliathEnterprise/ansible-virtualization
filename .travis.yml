@@ -5,7 +5,6 @@ dist: focal
 language: python
 python:
   - "3.8"
-
 addons:
   apt:
     sources:
@@ -16,9 +15,8 @@ addons:
       - bridge-utils
       - dnsmasq-base
       - ebtables
-      - virtinst
+      - libvirt-bin
       - libvirt-dev
-      - libvirt-daemon-system
       - qemu-kvm
       - qemu-utils
       - ruby-dev
@@ -35,7 +33,8 @@ install:
   - sudo chmod o+rwx /var/run/libvirt/libvirt-sock
 
 script:
-  - travis_wait 60 tox -e ci
+  - mv ../ansible-virtualization ../tcharl.ansible_virtualization
+  - travis_wait 60 tox -e test-exec -- --scenario-name kvm
 branches:
   only:
     - master
