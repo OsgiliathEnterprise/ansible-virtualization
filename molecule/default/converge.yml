@@ -69,7 +69,7 @@
             path: /home/vagrant/myvmerr.log
             search_regex: SSH\sis\sready
             timeout: 1800
-            delay: 5
+            delay: 10
       always:
         - name: cat error log
           ansible.builtin.slurp:
