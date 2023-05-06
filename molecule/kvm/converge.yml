@@ -59,7 +59,7 @@
       ansible.builtin.copy:
         content: |
           non empty line
-        path: "{{ item }}"
+        dest: "{{ item }}"
       loop:
         - "/home/vagrant/myvmerr.log"
         - "/home/vagrant/myvm.log"
