@@ -56,8 +56,10 @@
         group: vagrant
         mode: '0644'
 
-    - name: stats files
-      ansible.builtin.stat:
+    - name: touch logging files to avoid slurp fail
+      ansible.builtin.copy:
+        content: |
+          non empty line
         path: "{{ item }}"
       loop:
         - "/home/vagrant/myvmerr.log"
