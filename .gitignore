@@ -1,5 +1,6 @@
 .idea
-__pychache__
+**/__pychache__
 .cache
 .DS_Store
 .tox
+build/
