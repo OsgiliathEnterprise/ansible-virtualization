@@ -2,5 +2,5 @@
 
 - name: Requirements | Import lvm playbook
   ansible.builtin.import_role:
-    name: mrlesmithjr.manage-lvm
+    name: mrlesmithjr.manage_lvm
   become: true
