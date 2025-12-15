@@ -39,7 +39,7 @@
 - name: Permanently allow ipv6 traffic forwarding on host nic
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.forwarding
-    value: '1'
+    value: '0'
     sysctl_set: yes
     state: present
     reload: yes
