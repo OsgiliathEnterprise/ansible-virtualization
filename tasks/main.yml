@@ -36,6 +36,24 @@
     reload: yes
   become: yes
 
+- name: Permanently allow ipv4 rp_filter on host nic
+  ansible.posix.sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: '2'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  become: yes
+
+- name: Permanently allow ipv4 default rp_filter on host nic
+  ansible.posix.sysctl:
+    name: net.ipv4.conf.default.rp_filter
+    value: '2'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  become: yes
+
 - name: Permanently allow ipv6 traffic forwarding on host nic
   ansible.posix.sysctl:
     name: net.ipv6.conf.all.forwarding
@@ -48,7 +66,7 @@
 - name: Activate bridge nf
   ansible.posix.sysctl:
     name: net.bridge.bridge-nf-call-iptables
-    value: '0'
+    value: '1'
     sysctl_set: true
     state: present
     reload: true
@@ -57,7 +75,7 @@
 - name: Activate bridge-nf-call-ip6tables
   ansible.posix.sysctl:
     name: net.bridge.bridge-nf-call-ip6tables
-    value: '0'
+    value: '1'
     sysctl_set: true
     state: present
     reload: true
