@@ -84,7 +84,7 @@
 - name: Activate bridge-nf-call-arptables
   ansible.posix.sysctl:
     name: net.bridge.bridge-nf-call-arptables
-    value: '1'
+    value: '0'
     sysctl_set: true
     state: present
     reload: true
