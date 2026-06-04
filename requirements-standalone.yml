@@ -2,6 +2,7 @@
 roles:
   - name: mrlesmithjr.manage_lvm
   - name: tcharl.ansible_localuser
+  - name: tcharl.ansible_volumes
   - name: robertdebock.epel
   - name: robertdebock.users
   - name: robertdebock.bootstrap
