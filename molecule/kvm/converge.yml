@@ -5,6 +5,7 @@
     manage_lvm: true
     lvm_groups:
       - vgname: libvirtpool
+        name: libvirtpool
         disks:
           - /dev/vdb
         create: true
