@@ -3,6 +3,5 @@ roles:
   - name: mrlesmithjr.manage_lvm
   - name: robertdebock.users
   - name: robertdebock.epel
-    version: 4.1.6
   - name: robertdebock.bootstrap
   - name: robertdebock.core_dependencies
